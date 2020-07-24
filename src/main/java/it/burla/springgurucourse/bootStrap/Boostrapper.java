@@ -29,33 +29,39 @@ public class Boostrapper implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        Publisher p1 = new Publisher("Dementia Books", "Via dei re", "Viterbo","Italy", "01100");
+        Publisher p2 = new Publisher("Flying pages", "Michael street 200", "Salentia", "Flatland", "02209");
+
+
+        publisherRepository.save(p1);
+        publisherRepository.save(p2);
+
         Author a1 = new Author("Jimmy", "Prior");
         Book b1 = new Book("My biography", "20394809834");
-        Publisher p1 = new Publisher("Dementia Books", "Via dei re", "Viterbo","Italy", "01100");
 
         a1.getBooks().add(b1);
         b1.getAuthors().add(a1);
+        b1.setPublisher(p1);
+        p1.getBooks().add(b1);
 
         authorRepository.save(a1);
         bookRepository.save(b1);
-        publisherRepository.save(p1);
+
 
         Author a2 = new Author("Sam", "Caller");
         Book b2 = new Book("The last night", "82038928");
-        Publisher p2 = new Publisher("Flying pages", "Michael street 200", "Salentia", "Flatland", "02209");
 
         b2.getAuthors().add(a2);
         a2.getBooks().add(b2);
+        p2.getBooks().add(b2);
+        b2.setPublisher(p2);
 
         authorRepository.save(a2);
         bookRepository.save(b2);
-        publisherRepository.save(p2);
 
         logger.info("Number of books: " + bookRepository.count());
         logger.info("Number of authors: " + authorRepository.count());
         logger.info("Number of publishers: " + publisherRepository.count());
-
-
 
     }
 }
