@@ -112,7 +112,6 @@ public class Publisher {
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", zipCode='" + zipCode + '\'' +
-                ", books=" + books +
                 '}';
     }
 }
